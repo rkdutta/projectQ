@@ -1,1 +1,5 @@
-{}
+{
+  "enabledPlugins": {
+    "pptx@anthropic-agent-skills": true
+  }
+}
