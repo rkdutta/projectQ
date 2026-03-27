@@ -1,5 +1,0 @@
-```
-python3 -m venv /Users/rdutta/Development/projectQ/.venv
-source .venv/bin/activate
-pip install "markitdown[pptx]" 
-```
