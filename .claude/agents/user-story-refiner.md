@@ -85,6 +85,35 @@ Rewrite and enrich each story following this structure:
 ## Dependencies
 [List any dependent stories, systems, or teams, or "None identified"]
 
+## Azure Well-Architected Framework Review
+
+### Reliability
+- **Target**: [Availability SLA, e.g. 99.9%]
+- **Risks**: [Single points of failure, retry logic, failover strategy]
+- **Recommendations**: [e.g. Availability Zones, redundant deployments, health probes]
+
+### Security
+- **Identity & Access**: [Azure AD / Managed Identity / RBAC requirements]
+- **Network**: [NSG rules, Private Endpoints, no public exposure]
+- **Data**: [Encryption at rest/in transit, Key Vault secrets]
+- **Compliance**: [Relevant Azure Policy assignments]
+
+### Cost Optimization
+- **SKU choices**: [Right-sized VM/service tiers, reserved vs pay-as-you-go]
+- **Waste risks**: [Idle resources, over-provisioning]
+- **Tagging**: [Required cost-center / environment tags for chargeback]
+
+### Operational Excellence
+- **IaC**: [Bicep / Terraform — idempotent, version-controlled]
+- **CI/CD**: [Pipeline lint, validate, deploy steps]
+- **Observability**: [Diagnostic settings → Log Analytics, alerts, dashboards]
+- **Runbook**: [Documented operational procedures]
+
+### Performance Efficiency
+- **Scaling**: [Auto-scale rules, scale-out triggers]
+- **Bottlenecks**: [Known throughput or latency constraints]
+- **Monitoring**: [Azure Monitor metrics to watch post-deploy]
+
 ## Notes & Open Questions
 [List any assumptions made or questions that need stakeholder clarification]
 ```
@@ -146,6 +175,13 @@ After processing all stories, create a `REFINEMENT-SUMMARY.md` file in the root 
 - Overall story point total
 
 ## Quality Standards
+
+**Azure Well-Architected Framework (WAF) must be applied to every story:**
+- Evaluate all 5 pillars: Reliability, Security, Cost Optimization, Operational Excellence, Performance Efficiency
+- Every story that touches Azure infrastructure must include a `## Azure Well-Architected Framework Review` section
+- Security pillar is non-negotiable — always specify identity model (Managed Identity preferred over service principals), network boundary (prefer Private Endpoints), and secrets management (Key Vault, never hardcoded)
+- Operational Excellence requires IaC (Bicep or Terraform) and diagnostic settings wired to Log Analytics for every provisioned resource
+- If a pillar is genuinely not applicable, write "N/A — [brief reason]" rather than leaving it blank
 
 **Acceptance Criteria must be:**
 - Written in Gherkin Given/When/Then format
